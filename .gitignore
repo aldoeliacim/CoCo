@@ -1,0 +1,31 @@
+# Invisible files, including .venv
+.*
+!.gitattributes
+
+# Python-generated files
+__pycache__/
+
+# IDE and Editor files
+.vscode/
+
+# Secrets
+HF_TOKEN
+
+# Model files and output
+data/models/*
+data/fantomas/*
+results/
+report/
+out/
+
+# Test outputs and coverage
+tests/
+*.md
+!README.md
+##############################
+# Keep
+!.gitignore
+!.python-version
+!data/models/best_fantomas.pt
+!data/models/README.md
+##############################
