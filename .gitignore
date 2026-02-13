@@ -29,3 +29,7 @@ tests/
 !data/models/best_fantomas.pt
 !data/models/README.md
 ##############################
+
+# Keep GitHub automation files
+!.github
+!.github/**

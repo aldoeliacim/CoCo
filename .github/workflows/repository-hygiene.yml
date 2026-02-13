@@ -1,0 +1,40 @@
+name: Repository Hygiene
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required files
+        run: |
+          set -euo pipefail
+          if [ -f README.md ] || [ -f readme.md ] || [ -f README.rst ]; then
+            echo "README present"
+          else
+            echo "README missing" >&2
+            exit 1
+          fi
+
+          if [ -f LICENSE ] || [ -f LICENSE.md ] || [ -f LICENSE.txt ]; then
+            echo "License present"
+          else
+            echo "License missing" >&2
+            exit 1
+          fi
+
+          if [ -f .github/dependabot.yml ]; then
+            echo "Dependabot config present"
+          else
+            echo "Dependabot config missing" >&2
+            exit 1
+          fi
